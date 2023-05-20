@@ -1,16 +1,129 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Movie</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
     <style>
-        iframe {
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 300px;
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            padding: 5px 10px;
+            font-size: 16px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .embed-container {
+            position: relative;
+            overflow: hidden;
+            padding-top: 56.25%; /* 16:9 aspect ratio (divides height by width) */
+        }
+
+        .embed-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 600px; /* Adjust the height as desired */
+            height: 100%;
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 20px;
+        }
+
+        .movies-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-gap: 20px;
+        }
+
+        .movie-card {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .movie-card img {
+            width: 200px; /* Adjust the width as per your preference */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        .movie-details {
+            margin-top: 10px;
+        }
+
+        .movie-details h3 {
+            color: #333;
+            margin: 0;
+        }
+
+        .movie-details p {
+            color: #777;
+            margin: 5px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 5px 10px;
+            font-size: 16px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
         }
     </style>
+    <title>Movie</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
+    <h1>Movie Search</h1>
+    <form action="/search" method="get">
+        <label for="search">Search:</label>
+        <input type="text" id="search" name="title" placeholder="Enter movie title" required>
+        <input type="submit" value="Search">
+    </form>
     <h1>Movie</h1>
-    <iframe src="{{ embed_link }}" frameborder="0" allowfullscreen="true"></iframe>
+    <div class="embed-container">
+        <iframe src="{{ embed_link }}"></iframe>
+    </div>
+
+    <h2>Related Movies</h2>
+    <div class="movies-container">
+        {% for movie in related_movies %}
+        <div class="movie-card">
+            <img src="{{ movie['poster'] }}" alt="{{ movie['title'] }}">
+
+            <div class="movie-details">
+                <h3>{{ movie['title'] }}</h3>
+                <p>{{ movie['year'] }}</p>
+                <p>{{ movie['genre'] }}</p>
+                <p>{{ movie['rating'] }}</p>
+                <a href="{{ url_for('movie', imdb_id=movie['imdb']) }}" class="btn">View Details</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </body>
 </html>

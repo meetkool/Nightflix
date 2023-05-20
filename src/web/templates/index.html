@@ -2,6 +2,73 @@
 <html>
 <head>
     <title>Movie Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 300px;
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            padding: 5px 10px;
+            font-size: 16px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-gap: 20px;
+        }
+
+        li {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 0;
+        }
+
+        p {
+            color: #777;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        a {
+            display: block;
+            margin-top: 10px;
+            color: #333;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
     <h1>Movie Search</h1>
@@ -17,7 +84,7 @@
         <li>
             <h2>{{ movie.title }}</h2>
             <p>Year: {{ movie.year }}</p>
-            <img src="{{ movie.poster }}" alt="{{ movie.title }} poster" width="200">
+            <img src="{{ movie.poster }}" alt="{{ movie.title }} poster">
             <a href="/movie/{{ movie.imdb }}" target="_blank">Watch on VidSrc</a>
         </li>
         {% endfor %}
