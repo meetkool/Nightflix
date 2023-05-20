@@ -102,6 +102,7 @@ def search():
     movies = search_movies(title)
     return render_template('search.html', movies=movies)
 
+
 @app.route('/movie/<imdb_id>')
 def movie(imdb_id):
     embed_link = get_movie_embed_link(imdb_id)
@@ -109,4 +110,4 @@ def movie(imdb_id):
     return render_template('movie.html', embed_link=embed_link, related_movies=related_movies)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5001, debug=True)
