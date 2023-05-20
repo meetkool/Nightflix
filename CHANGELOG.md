@@ -1,3 +1,15 @@
+# v0.0.3 (Sat May 20 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Update index.html ([@meetkool](https://github.com/meetkool))
+
+#### Authors: 1
+
+- Meet Bhanushali ([@meetkool](https://github.com/meetkool))
+
+---
+
 # v0.0.2 (Sat May 20 2023)
 
 #### ⚠️ Pushed to `main`
