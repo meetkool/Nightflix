@@ -14,14 +14,14 @@ def get_latest_movies():
             'year': movie['year'],
             'imdb': movie['imdb'],
             'poster': movie['poster'],
-            'genre': movie['genre'],
-            'runtime': movie['runtime'],
-            'director': movie['director'],
-            'country': movie['country'],
-            'rating': movie['rating'],
-            'votes': movie['votes'],
-            'sub': movie['sub'],
-            'quality': movie['quality']
+            'genre': movie.get('genres', ''),
+            'runtime': movie.get('runtimeStr', ''),
+            'director': movie.get('directors', ''),
+            'country': movie.get('countries', ''),
+            'rating': movie.get('imDbRating', ''),
+            'votes': movie.get('imDbVotes', ''),
+            'sub': '',
+            'quality': ''
         })
 
     return movies
@@ -80,4 +80,4 @@ def movie(imdb_id):
     return render_template('movie.html', embed_link=embed_link)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
