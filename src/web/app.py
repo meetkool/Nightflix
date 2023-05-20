@@ -4,6 +4,8 @@ import random
 
 app = Flask(__name__)
 
+IMDB_API_KEY = 'k_5pjllrms'
+
 def get_latest_movies():
     response = requests.get('https://api.gdriveplayer.us/v1/movie/newest', params={'limit': 10, 'page': 1, 'order': 'date', 'sort': 'DESC'})
     data = response.json()
@@ -28,7 +30,7 @@ def get_latest_movies():
     return movies
 
 def search_movies(title):
-    response = requests.get(f'https://imdb-api.com/en/API/SearchTitle/k_c7k913z5/{title}')
+    response = requests.get(f'https://imdb-api.com/en/API/SearchTitle/{IMDB_API_KEY}/{title}')
     data = response.json()
 
     movies = []
@@ -57,7 +59,7 @@ def get_movie_embed_link(imdb_id):
     return embed_link
 
 def get_random_movies():
-    response = requests.get('https://imdb-api.com/en/API/MostPopularMovies/k_c7k913z5')
+    response = requests.get(f'https://imdb-api.com/en/API/MostPopularMovies/{IMDB_API_KEY}')
     data = response.json()
 
     movies = []
@@ -107,4 +109,4 @@ def movie(imdb_id):
     return render_template('movie.html', embed_link=embed_link, related_movies=related_movies)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5002, debug=True)
