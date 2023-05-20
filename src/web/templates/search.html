@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Movie Search</title>
+    <title>Movie Search Results</title>
 </head>
 <body>
+
     <h1>Movie Search</h1>
     <form action="/search" method="get">
         <label for="search">Search:</label>
         <input type="text" id="search" name="title" placeholder="Enter movie title" required>
         <input type="submit" value="Search">
     </form>
-
-    <h1>Latest Movies</h1>
+    <h1>Search Results</h1>
+    {% if movies %}
     <ul>
         {% for movie in movies %}
         <li>
@@ -22,5 +23,8 @@
         </li>
         {% endfor %}
     </ul>
+    {% else %}
+    <p>No results found.</p>
+    {% endif %}
 </body>
 </html>
