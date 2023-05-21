@@ -1,34 +1,96 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Movie Search</title>
+    
+    <title>Movie Search Results</title>
     <style>
+       body {
+    margin: 0%  ;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  
+    background: linear-gradient(129.96deg, #ff2f2f 10.43%, #000460 92.78%),
+      radial-gradient(100% 246.94% at 100% 0%, #ffffff 0%, #020063 100%),
+      linear-gradient(58.72deg, #2200f2 0%, #530000 100%),
+      linear-gradient(154.03deg, #b70000 0%, #ff003d 74.04%),
+      linear-gradient(341.1deg, #ff0000 7.52%, #0038ff 77.98%),
+      linear-gradient(136.23deg, #00c2ff 11.12%, #ff0000 86.47%),
+      radial-gradient(57.37% 100% at 50% 0%, #b50000 0%, #0034bb 100%);
+    background-blend-mode: overlay, color-burn, screen, overlay, difference,
+      difference, normal;
+    background-size: 600%, 600%;
+    -webkit-animation: AnimationName 16s ease infinite;
+    -moz-animation: AnimationName 16s ease infinite;
+    animation: AnimationName 16s ease infinite;
+  }
+  
+  /* -----------------------------------------------------------
+  ----------------------------------------------------------- */
+  
+  @-webkit-keyframes AnimationName {
+    0% {
+      background-position: 22% 0%;
+    }
+    50% {
+      background-position: 79% 100%;
+    }
+    100% {
+      background-position: 22% 0%;
+    }
+  }
+  @-moz-keyframes AnimationName {
+    0% {
+      background-position: 22% 0%;
+    }
+    50% {
+      background-position: 79% 100%;
+    }
+    100% {
+      background-position: 22% 0%;
+    }
+  }
+  @keyframes AnimationName {
+    0% {
+      background-position: 22% 0%;
+    }
+    50% {
+      background-position: 79% 100%;
+    }
+    100% {
+      background-position: 22% 0%;
+    }
+  }
         body {
             font-family: Arial, sans-serif;
-            background-color: #fff; /* Default background color */
-            padding: 20px; /* Adjust the body padding as per your preference */
+            margin: 5px;
+            padding: 0;
         }
 
-        body.dark-theme {
-            background-color: #323d47; /* Dark theme background color */
+        header {
+            opacity: 0.5;
+            background-color: #333;
+            padding: 20px;
+            color: #fff;
+            display: flex;
+            align-items: center;
         }
 
         h1 {
-            color: #333;
-            transition: text-shadow 0.5s, color 0.5s;
-        }
-
-        h1.dark-theme {
-            text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 40px #f09, 0 0 80px #f09, 0 0 90px #f09, 0 0 100px #f09, 0 0 150px #f09;
-            color: #fff;
+            margin: 0;
+            margin-right: auto;
         }
 
         form {
-            margin-bottom: 20px;
+            margin-left: auto;
+            display: flex;
+            align-items: center;
         }
 
         label {
             font-weight: bold;
+            margin-right: 10px;
+            color: #fff;
         }
 
         input[type="text"] {
@@ -46,7 +108,7 @@
             cursor: pointer;
         }
 
-        ul.movies {
+        ul {
             list-style-type: none;
             padding: 0;
             display: grid;
@@ -54,57 +116,19 @@
             grid-gap: 20px;
         }
 
-        ul.movies li {
+        li {
             background-color: #f5f5f5;
-            padding: 20px; /* Adjust the card padding as per your preference */
+            padding: 20px;
             border-radius: 5px;
             transition: transform 0.3s;
             cursor: pointer;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add black light shadow */
             position: relative;
         }
 
-        ul.movies li:hover {
+        li:hover {
             transform: translateY(-5px);
         }
 
-        h2 {
-            color: #333;
-            margin-top: 0;
-        }
-
-        p {
-            color: #777;
-        }
-
-        img {
-            width: 100%;
-            height: auto;
-        }
-
-        a {
-            display: block;
-            margin-top: 10px;
-            color: #333;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        a:hover {
-            color: #f00;
-        }
-
-        /* New CSS for the dark theme button */
-        .dark-theme-button {
-            padding: 5px 10px;
-            background-color: #333;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            margin-bottom: 10px;
-        }
-
-        /* New CSS for the card overlay */
         .card-overlay {
             position: absolute;
             top: 0;
@@ -121,60 +145,69 @@
             transition: opacity 0.3s;
         }
 
-        ul.movies li:hover .card-overlay {
+        li:hover .card-overlay {
             opacity: 1;
         }
 
-        .card-overlay h2,
-        .card-overlay p,
-        .card-overlay a {
+        h2 {
             color: #fff;
+            margin-top: 0;
         }
 
-        .card-overlay a {
+        p {
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #fff;
+            text-decoration: none;
             background-color: red;
             text-shadow: 2px 2px 4px black;
             padding: 5px;
             display: inline-block;
             border-radius: 5px;
-            transition: background-color 0.3s;
         }
 
-        .card-overlay a:hover {
+        a:hover {
             background-color: #ff3333;
         }
-    </style>
-    <script>
-        function toggleDarkTheme() {
-            var body = document.querySelector("body");
-            body.classList.toggle("dark-theme");
 
-            var h1 = document.querySelector("h1");
-            h1.classList.toggle("dark-theme");
+        img {
+            width: 100%;
+            height: auto;
         }
-    </script>
+        
+    </style>
+
 </head>
 <body>
-    <h1>Movie Search</h1>
-    <button class="dark-theme-button" onclick="toggleDarkTheme()">Toggle Dark Theme</button>
-    <form action="/search" method="get">
-        <label for="search">Search:</label>
-        <input type="text" id="search" name="title" placeholder="Enter movie title" required>
-        <input type="submit" value="Search">
-    </form>
-
-    <h1>Latest Movies</h1>
-    <ul class="movies">
+    <header>
+        <a href="/" style="text-decoration: none; color: inherit; cursor: pointer; padding: 10px;">
+            <h1>Movie Search</h1>
+        </a>
+        <form action="/search" method="get">
+            <label for="search">Search:</label>
+            <input type="text" id="search" name="title" placeholder="Enter movie title" required>
+            <input type="submit" value="Search">
+        </form>
+    </header>
+    <h1 style="color: white;">Latest Movies </h1>
+    {% if movies %}
+    <ul>
         {% for movie in movies %}
         <li>
-            <div style="background-image: url('{{ movie.poster }}'); height: 250px; background-size: cover; background-position: center;"></div>
             <div class="card-overlay">
                 <h2>{{ movie.title }}</h2>
                 <p>Year: {{ movie.year }}</p>
                 <a href="/movie/{{ movie.imdb }}" target="_blank">Watch on VidSrc</a>
             </div>
+            <img src="{{ movie.poster }}" alt="{{ movie.title }} poster">
         </li>
         {% endfor %}
     </ul>
+    {% else %}
+    <p>No results found.</p>
+    {% endif %}
 </body>
 </html>

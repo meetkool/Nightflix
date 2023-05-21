@@ -1,8 +1,75 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Movie Search Results</title>
     <style>
+        body {
+            margin: 5px;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+
+            background: linear-gradient(129.96deg, #ff2f2f 10.43%, #000460 92.78%),
+                radial-gradient(100% 246.94% at 100% 0%, #ffffff 0%, #020063 100%),
+                linear-gradient(58.72deg, #2200f2 0%, #530000 100%),
+                linear-gradient(154.03deg, #b70000 0%, #ff003d 74.04%),
+                linear-gradient(341.1deg, #ff0000 7.52%, #0038ff 77.98%),
+                linear-gradient(136.23deg, #00c2ff 11.12%, #ff0000 86.47%),
+                radial-gradient(57.37% 100% at 50% 0%, #b50000 0%, #0034bb 100%);
+            background-blend-mode: overlay, color-burn, screen, overlay, difference,
+                difference, normal;
+            background-size: 600%, 600%;
+            -webkit-animation: AnimationName 16s ease infinite;
+            -moz-animation: AnimationName 16s ease infinite;
+            animation: AnimationName 16s ease infinite;
+        }
+
+        /* -----------------------------------------------------------
+  ----------------------------------------------------------- */
+
+        @-webkit-keyframes AnimationName {
+            0% {
+                background-position: 22% 0%;
+            }
+
+            50% {
+                background-position: 79% 100%;
+            }
+
+            100% {
+                background-position: 22% 0%;
+            }
+        }
+
+        @-moz-keyframes AnimationName {
+            0% {
+                background-position: 22% 0%;
+            }
+
+            50% {
+                background-position: 79% 100%;
+            }
+
+            100% {
+                background-position: 22% 0%;
+            }
+        }
+
+        @keyframes AnimationName {
+            0% {
+                background-position: 22% 0%;
+            }
+
+            50% {
+                background-position: 79% 100%;
+            }
+
+            100% {
+                background-position: 22% 0%;
+            }
+        }
+
         body {
             font-family: Arial, sans-serif;
         }
@@ -104,16 +171,65 @@
             width: 100%;
             height: auto;
         }
+
+        header {
+            opacity: 0.5;
+            background-color: #333;
+            padding: 20px;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0;
+        }
+
+        header h1 {
+            margin: 0;
+            color: #fff;
+        }
+
+        header form {
+            display: flex;
+            align-items: center;
+        }
+
+        header label {
+            font-weight: bold;
+            margin-right: 10px;
+            color: #fff;
+        }
+
+        header input[type="text"] {
+            width: 300px;
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        header input[type="submit"] {
+            padding: 5px 10px;
+            font-size: 16px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
     </style>
 </head>
+
 <body>
-    <h1>Movie Search</h1>
-    <form action="/search" method="get">
-        <label for="search">Search:</label>
-        <input type="text" id="search" name="title" placeholder="Enter movie title" required>
-        <input type="submit" value="Search">
-    </form>
-    <h1>Search Results</h1>
+    <header>
+        <a href="/" style="text-decoration: none; color: inherit; cursor: pointer; padding: 10px;">
+            <h1>Movie Search</h1>
+        </a>
+        <form action="/search" method="get">
+            <label for="search">Search:</label>
+            <input type="text" id="search" name="title" placeholder="Enter movie title" required>
+            <input type="submit" value="Search">
+        </form>
+    </header>
+
+    <h1 style="color: white;">Search Results</h1>
+
     {% if movies %}
     <ul>
         {% for movie in movies %}
@@ -131,4 +247,5 @@
     <p>No results found.</p>
     {% endif %}
 </body>
+
 </html>
