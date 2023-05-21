@@ -4,7 +4,7 @@ import random
 
 app = Flask(__name__)
 
-IMDB_API_KEY = 'k_5pjllrms'
+IMDB_API_KEY = 'k_2i70ksdp'
 
 def get_latest_movies():
     response = requests.get('https://api.gdriveplayer.us/v1/movie/newest', params={'limit': 10, 'page': 1, 'order': 'date', 'sort': 'DESC'})
