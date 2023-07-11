@@ -12,22 +12,34 @@ def get_latest_movies():
 
     movies = []
     for movie in data:
+        title = movie.get('title', '')
+        year = movie.get('year', '')
+        imdb = movie.get('imdb', '')
+        poster = movie.get('poster', '')
+        genre = movie.get('genres', '')
+        runtime = movie.get('runtimeStr', '')
+        director = movie.get('directors', '')
+        country = movie.get('countries', '')
+        rating = movie.get('imDbRating', '')
+        votes = movie.get('imDbVotes', '')
+
         movies.append({
-            'title': movie['title'],
-            'year': movie['year'],
-            'imdb': movie['imdb'],
-            'poster': movie['poster'],
-            'genre': movie.get('genres', ''),
-            'runtime': movie.get('runtimeStr', ''),
-            'director': movie.get('directors', ''),
-            'country': movie.get('countries', ''),
-            'rating': movie.get('imDbRating', ''),
-            'votes': movie.get('imDbVotes', ''),
+            'title': title,
+            'year': year,
+            'imdb': imdb,
+            'poster': poster,
+            'genre': genre,
+            'runtime': runtime,
+            'director': director,
+            'country': country,
+            'rating': rating,
+            'votes': votes,
             'sub': '',
             'quality': ''
         })
 
     return movies
+
 
 def search_movies(title):
     response = requests.get(f'https://imdb-api.com/en/API/SearchTitle/{IMDB_API_KEY}/{title}')
