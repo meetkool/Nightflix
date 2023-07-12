@@ -4,7 +4,7 @@ import random
 
 app = Flask(__name__)
 
-IMDB_API_KEY = 'k_2i70ksdp'
+OMDB_API_KEY = '8cf623f0'
 
 def get_latest_movies():
     response = requests.get('https://api.gdriveplayer.us/v1/movie/newest', params={'limit': 10, 'page': 1, 'order': 'date', 'sort': 'DESC'})
@@ -42,47 +42,17 @@ def get_latest_movies():
 
 
 def search_movies(title):
-    response = requests.get(f'https://imdb-api.com/en/API/SearchTitle/{IMDB_API_KEY}/{title}')
+    response = requests.get('http://www.omdbapi.com/', params={'s': title, 'apikey': '8cf623f0'})
     data = response.json()
 
     movies = []
-    if 'results' in data:
-        for result in data['results']:
-            if result['resultType'] == 'Title':
-                movies.append({
-                    'title': result['title'],
-                    'year': result['description'],
-                    'imdb': result['id'],
-                    'poster': result['image'],
-                    'genre': '',
-                    'runtime': '',
-                    'director': '',
-                    'country': '',
-                    'rating': '',
-                    'votes': '',
-                    'sub': '',
-                    'quality': ''
-                })
-
-    return movies
-
-def get_movie_embed_link(imdb_id):
-    embed_link = f'https://vidsrc.me/embed/{imdb_id}/'
-    return embed_link
-
-def get_random_movies():
-    response = requests.get(f'https://imdb-api.com/en/API/MostPopularMovies/{IMDB_API_KEY}')
-    data = response.json()
-
-    movies = []
-    if 'items' in data:
-        random.shuffle(data['items'])
-        for item in data['items'][:6]:
+    if 'Search' in data:
+        for result in data['Search']:
             movies.append({
-                'title': item['title'],
-                'year': item['year'],
-                'imdb': item['id'],
-                'poster': item['image'],
+                'title': result['Title'],
+                'year': result['Year'],
+                'imdb': result['imdbID'],
+                'poster': result['Poster'],
                 'genre': '',
                 'runtime': '',
                 'director': '',
@@ -94,6 +64,46 @@ def get_random_movies():
             })
 
     return movies
+
+def get_movie_embed_link(imdb_id):
+    embed_link = f'https://vidsrc.me/embed/{imdb_id}/'
+    return embed_link
+
+def get_random_movies():
+    response = requests.get('https://api.gdriveplayer.us/v1/movie/newest', params={'limit': 10, 'page': 1, 'order': 'date', 'sort': 'DESC'})
+    data = response.json()
+
+    movies = []
+    random.shuffle(data)
+    for movie in data[:6]:
+        title = movie.get('title', '')
+        year = movie.get('year', '')
+        imdb = movie.get('imdb', '')
+        poster = movie.get('poster', '')
+        genre = movie.get('genres', '')
+        runtime = movie.get('runtimeStr', '')
+        director = movie.get('directors', '')
+        country = movie.get('countries', '')
+        rating = movie.get('imDbRating', '')
+        votes = movie.get('imDbVotes', '')
+
+        movies.append({
+            'title': title,
+            'year': year,
+            'imdb': imdb,
+            'poster': poster,
+            'genre': genre,
+            'runtime': runtime,
+            'director': director,
+            'country': country,
+            'rating': rating,
+            'votes': votes,
+            'sub': '',
+            'quality': ''
+        })
+
+    return movies
+
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
